@@ -7,36 +7,33 @@ class Solution{
     public:
     vector<pair<int,int>> allPairs(int A[], int B[], int N, int M, int X)
     {
-        sort(A,A+N);
-        sort(B,B+M);
+        // Your code goes here  
+        int si = 0, ei = M-1 , n1 = 0, n2 = 0;
+        pair<int, int> p;
+        vector<pair<int, int>> ans;
         
-        int si = 0 ;
-        int ed = M-1;
-        int sum = 0;
+        sort (A, A+N);
+        sort (B, B+M);
         
-        vector<pair<int,int>> res;
-        
-        while(si<N&&ed>=0)
-        {
-            sum = A[si] + B[ed];
+        while (si<N && ei>=0){
             
-            if(sum==X)
-            {
-                pair<int,int> p (A[si],B[ed]);
-                res.push_back(p);
+            if (A[si]+B[ei]==X){
+                p.first = A[si];
+                p.second = B[ei];
+                ans.push_back(p);
                 si++;
-                ed--;
-            }else if(X<sum)
-            {
-                ed--;
+                ei--;
             }
-            else if(X>sum)
-            {
+            else if (A[si] + B[ei]>X){
+                ei--;
+            }
+            else if (A[si] + B[ei] < X){
                 si++;
             }
         }
         
-    return res;
+        return ans;
+        
     }
 };
 
